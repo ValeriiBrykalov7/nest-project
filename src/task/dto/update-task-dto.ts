@@ -1,5 +1,4 @@
-export type Task = {
-    id: number;
+export class UpdateTaskDto {
     title: string;
     isCompleted: boolean;
-};
+}
