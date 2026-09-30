@@ -37,7 +37,10 @@ export class TaskService {
         const newTask = {
             id: this.tasks.length + 1,
             title: dto.title,
-            isCompleted: false
+            isCompleted: false,
+            description: dto.description || '',
+            priority: dto.priority || 0,
+            tags: dto.tags || [],
         }
         this.tasks.push(newTask)
         return this.tasks
