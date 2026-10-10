@@ -1,22 +1,22 @@
-version: '3.9'
-
 services:
   postgres:
     container_name: postgress
-    image: postgres:latest
+    image: postgres:18
     restart: always
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}  
+      - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=nest_project
     ports:
-      - "5432:5432"
+      - '5433:5432'
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres18-data:/var/lib/postgresql
     networks:
-      - nestjs-network     
+      - nestjs-network
 
 volumes:
   postgres-data:
+  postgres18-data:
 
 networks:
   nestjs-network:

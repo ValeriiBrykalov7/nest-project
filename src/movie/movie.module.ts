@@ -2,9 +2,11 @@ import {Module} from '@nestjs/common';
 import {MovieService} from './movie.service.js';
 import {MovieController} from './movie.controller.js';
 
-import {UserModule} from '../user/user.module.js';
+import {MovieEntity} from './entities/movie.entity.js';
+import {TypeOrmModule} from '@nestjs/typeorm';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([MovieEntity])],
   controllers: [MovieController],
   providers: [MovieService],
 })

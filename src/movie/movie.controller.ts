@@ -1,19 +1,20 @@
 import {Body, Controller, Get, Headers, Ip, Post, Query, Req, Res, Session} from '@nestjs/common';
 import {MovieService} from './movie.service.js';
 import type {Request, Response} from 'express';
+import {CreateMovieDto} from './dto/create-movie.dto.js';
 
 @Controller('movie')
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get()
-  getAllMovies(@Query() query: string) {
-    return JSON.stringify(query);
+  getAllMovies() {
+    return this.movieService.findAll();
   }
 
   @Post()
-  createMovie(@Body('title') title: string, @Body('director') director: string) {
-    return {message: `Movie created with title: ${title} and director: ${director}`};
+  createMovie(@Body() dto: CreateMovieDto) {
+    return this.movieService.createMovie(dto);
   }
 
   @Get('user-agent')
